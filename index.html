@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080B10">
+
+    <title>Blackjack Trainer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <header class="header">
+            <div class="brand">
+                <span class="brand-icon">♠</span>
+                <span>BLACKJACK TRAINER</span>
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                TRAINING MODE
+            </div>
+        </header>
+
+        <section class="hero">
+            <p class="eyebrow">MASTER THE COUNT</p>
+            <h1>Blackjack<br><span>Practice Lab.</span></h1>
+            <p class="subtitle">
+                Learn card counting. Understand the numbers.
+                Improve your blackjack knowledge.
+            </p>
+        </section>
+
+        <section class="trainer">
+
+            <div class="trainer-heading">
+                <div>
+                    <p class="eyebrow">HI-LO SYSTEM</p>
+                    <h2>Counting Trainer</h2>
+                </div>
+
+                <span class="mode-label">PRACTICE</span>
+            </div>
+
+            <div class="count-display">
+
+                <div class="count-box">
+                    <p>RUNNING COUNT</p>
+                    <strong id="runningCount">0</strong>
+                </div>
+
+                <div class="count-box">
+                    <p>TRUE COUNT</p>
+                    <strong id="trueCount">0.00</strong>
+                </div>
+
+            </div>
+
+            <div class="card-area">
+                <p class="eyebrow">DEALT CARDS</p>
+
+                <div id="cardDisplay" class="cards">
+                    <p class="empty-message">
+                        Start dealing to begin your session.
+                    </p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="dealBtn" class="primary-btn">
+                    Deal Card
+                </button>
+
+                <button id="resetBtn" class="secondary-btn">
+                    Reset Session
+                </button>
+            </div>
+
+            <div class="deck-info">
+                <span>Cards dealt</span>
+                <strong id="cardsDealt">0</strong>
+            </div>
+
+            <div class="deck-info">
+                <span>Estimated decks remaining</span>
+                <strong id="decksRemaining">6.00</strong>
+            </div>
+
+        </section>
+
+        <footer>
+            BLACKJACK TRAINER · EDUCATIONAL SIMULATOR
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
