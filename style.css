@@ -1,1 +1,287 @@
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #080B10;
+    --surface: #111720;
+    --surface-light: #19222E;
+    --gold: #D9B56D;
+    --text: #F5F5F5;
+    --muted: #8B96A5;
+    --border: rgba(255,255,255,0.08);
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.app {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 24px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.brand-icon {
+    color: var(--gold);
+    font-size: 25px;
+}
+
+.status {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+}
+
+.status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #50C78B;
+    margin-right: 7px;
+}
+
+.hero {
+    padding: 65px 0 45px;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.subtitle {
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 430px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.trainer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.trainer-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.trainer-heading h2 {
+    font-size: 22px;
+}
+
+.mode-label {
+    color: var(--gold);
+    background: rgba(217,181,109,0.10);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.count-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.count-box {
+    background: var(--surface-light);
+    padding: 22px;
+    border-radius: 12px;
+}
+
+.count-box p {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.count-box strong {
+    font-size: 36px;
+    color: var(--gold);
+    font-weight: 500;
+}
+
+.card-area {
+    margin-top: 35px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 115px;
+    align-items: center;
+}
+
+.playing-card {
+    width: 65px;
+    height: 95px;
+    border-radius: 8px;
+    background: #F7F7F3;
+    color: #151515;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 9px;
+    font-size: 20px;
+    font-weight: bold;
+    animation: cardIn 0.25s ease;
+}
+
+.playing-card.red {
+    color: #D43C43;
+}
+
+.card-bottom {
+    align-self: flex-end;
+}
+
+.empty-message {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 14px 22px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.primary-btn {
+    background: var(--gold);
+    color: #111;
+    border: none;
+}
+
+.primary-btn:hover {
+    background: #E8C987;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.secondary-btn:hover {
+    background: var(--surface-light);
+}
+
+.deck-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.deck-info strong {
+    color: var(--text);
+}
+
+footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    padding: 30px 0;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .app {
+        padding: 20px 15px;
+    }
+
+    .hero {
+        padding: 45px 0 30px;
+    }
+
+    .trainer {
+        padding: 20px 15px;
+    }
+
+    .count-box {
+        padding: 16px;
+    }
+
+    .count-box strong {
+        font-size: 29px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}
