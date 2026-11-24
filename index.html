@@ -1,105 +1,203 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#080B10">
 
-    <title>Blackjack Trainer</title>
+    <title>Blackjack Shoe Tracker</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main class="app">
+<main class="app">
 
-        <header class="header">
-            <div class="brand">
-                <span class="brand-icon">♠</span>
-                <span>BLACKJACK TRAINER</span>
+    <header class="header">
+        <div class="brand">
+            <span class="brand-icon">♠</span>
+            BLACKJACK TRACKER
+        </div>
+
+        <span class="status">
+            <span class="status-dot"></span>
+            TRAINING MODE
+        </span>
+    </header>
+
+    <section class="hero">
+        <p class="eyebrow">SHOE COMPOSITION ANALYTICS</p>
+
+        <h1>Know what<br><span>remains.</span></h1>
+
+        <p class="subtitle">
+            Track card composition, monitor the count,
+            and understand the remaining shoe.
+        </p>
+    </section>
+
+    <!-- DECK CONFIGURATION -->
+
+    <section class="panel">
+
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">CONFIGURATION</p>
+                <h2>Deck settings</h2>
+            </div>
+        </div>
+
+        <label for="deckSelector">Number of decks</label>
+
+        <select id="deckSelector">
+            <option value="1">1 Deck</option>
+            <option value="2">2 Decks</option>
+            <option value="4">4 Decks</option>
+            <option value="6" selected>6 Decks</option>
+            <option value="8">8 Decks</option>
+        </select>
+
+    </section>
+
+    <!-- SHOE OVERVIEW -->
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+            <p>TOTAL CARDS</p>
+            <strong id="totalCards">312</strong>
+        </div>
+
+        <div class="stat-card">
+            <p>REMAINING</p>
+            <strong id="remainingCards">312</strong>
+        </div>
+
+        <div class="stat-card">
+            <p>RUNNING COUNT</p>
+            <strong id="runningCount">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <p>TRUE COUNT</p>
+            <strong id="trueCount">0.00</strong>
+        </div>
+
+    </section>
+
+    <!-- CARD COMPOSITION -->
+
+    <section class="panel">
+
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">LIVE ANALYTICS</p>
+                <h2>Remaining cards</h2>
+            </div>
+        </div>
+
+        <div id="compositionChart" class="composition-chart"></div>
+
+    </section>
+
+    <!-- MANUAL CARD ENTRY -->
+
+    <section class="panel">
+
+        <p class="eyebrow">CARD INPUT</p>
+        <h2>Record dealt cards</h2>
+
+        <p class="helper-text">
+            Select each card that has appeared in your
+            training session.
+        </p>
+
+        <div id="cardButtons" class="card-buttons"></div>
+
+        <div class="divider"></div>
+
+        <p class="eyebrow">SEQUENCE INPUT</p>
+
+        <label for="sequenceInput">
+            Enter multiple cards
+        </label>
+
+        <input
+            type="text"
+            id="sequenceInput"
+            placeholder="Example: 5, K, 2, A, 7"
+            autocomplete="off"
+        >
+
+        <button id="sequenceBtn" class="primary-btn">
+            Add sequence
+        </button>
+
+        <p id="inputMessage" class="message"></p>
+
+    </section>
+
+    <!-- COUNT INFORMATION -->
+
+    <section class="panel">
+
+        <p class="eyebrow">COUNT INTERPRETATION</p>
+        <h2>Count information</h2>
+
+        <div class="count-info">
+            <span>Estimated decks remaining</span>
+            <strong id="decksRemaining">6.00</strong>
+        </div>
+
+        <div class="count-info">
+            <span>Cards recorded</span>
+            <strong id="cardsDealt">0</strong>
+        </div>
+
+        <div class="count-info">
+            <span>Cards remaining in shoe</span>
+            <strong id="shoeStatus">312 / 312</strong>
+        </div>
+
+    </section>
+
+    <!-- HISTORY -->
+
+    <section class="panel">
+
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">SESSION ACTIVITY</p>
+                <h2>Card history</h2>
             </div>
 
-            <div class="status">
-                <span class="status-dot"></span>
-                TRAINING MODE
-            </div>
-        </header>
+            <button id="undoBtn" class="small-btn">
+                Undo last
+            </button>
+        </div>
 
-        <section class="hero">
-            <p class="eyebrow">MASTER THE COUNT</p>
-            <h1>Blackjack<br><span>Practice Lab.</span></h1>
-            <p class="subtitle">
-                Learn card counting. Understand the numbers.
-                Improve your blackjack knowledge.
+        <div id="cardHistory" class="history">
+            <p class="helper-text">
+                No cards recorded yet.
             </p>
-        </section>
+        </div>
 
-        <section class="trainer">
+        <button id="resetBtn" class="secondary-btn">
+            Reset session
+        </button>
 
-            <div class="trainer-heading">
-                <div>
-                    <p class="eyebrow">HI-LO SYSTEM</p>
-                    <h2>Counting Trainer</h2>
-                </div>
+    </section>
 
-                <span class="mode-label">PRACTICE</span>
-            </div>
+    <footer>
+        BLACKJACK SHOE TRACKER · EDUCATIONAL USE
+    </footer>
 
-            <div class="count-display">
+</main>
 
-                <div class="count-box">
-                    <p>RUNNING COUNT</p>
-                    <strong id="runningCount">0</strong>
-                </div>
-
-                <div class="count-box">
-                    <p>TRUE COUNT</p>
-                    <strong id="trueCount">0.00</strong>
-                </div>
-
-            </div>
-
-            <div class="card-area">
-                <p class="eyebrow">DEALT CARDS</p>
-
-                <div id="cardDisplay" class="cards">
-                    <p class="empty-message">
-                        Start dealing to begin your session.
-                    </p>
-                </div>
-            </div>
-
-            <div class="controls">
-                <button id="dealBtn" class="primary-btn">
-                    Deal Card
-                </button>
-
-                <button id="resetBtn" class="secondary-btn">
-                    Reset Session
-                </button>
-            </div>
-
-            <div class="deck-info">
-                <span>Cards dealt</span>
-                <strong id="cardsDealt">0</strong>
-            </div>
-
-            <div class="deck-info">
-                <span>Estimated decks remaining</span>
-                <strong id="decksRemaining">6.00</strong>
-            </div>
-
-        </section>
-
-        <footer>
-            BLACKJACK TRAINER · EDUCATIONAL SIMULATOR
-        </footer>
-
-    </main>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
