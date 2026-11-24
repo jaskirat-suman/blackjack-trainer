@@ -1,4 +1,9 @@
 
+/* =====================================
+   BLACKJACK SHOE TRACKER
+   PREMIUM INTERFACE
+===================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -8,15 +13,21 @@
 :root {
     --background: #080B10;
     --surface: #111720;
-    --surface-light: #19222E;
+    --surface-light: #192330;
     --gold: #D9B56D;
+    --gold-light: #F0D49A;
     --text: #F5F5F5;
-    --muted: #8B96A5;
+    --muted: #929EAE;
     --border: rgba(255,255,255,0.08);
+    --green: #55C995;
+    --red: #EF6666;
 }
 
 body {
-    background: var(--background);
+    background:
+        radial-gradient(ellipse at 50% 0%, #18202C 0%, transparent 55%),
+        var(--background);
+
     color: var(--text);
     font-family: Arial, sans-serif;
     min-height: 100vh;
@@ -28,6 +39,8 @@ body {
     margin: auto;
     padding: 30px 24px;
 }
+
+/* HEADER */
 
 .header {
     display: flex;
@@ -62,12 +75,14 @@ body {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #50C78B;
+    background: var(--green);
     margin-right: 7px;
 }
 
+/* HERO */
+
 .hero {
-    padding: 65px 0 45px;
+    padding: 65px 0 40px;
 }
 
 .eyebrow {
@@ -75,11 +90,11 @@ body {
     font-size: 10px;
     font-weight: bold;
     letter-spacing: 2px;
-    margin-bottom: 14px;
+    margin-bottom: 13px;
 }
 
 .hero h1 {
-    font-size: clamp(42px, 7vw, 68px);
+    font-size: clamp(44px, 7vw, 68px);
     line-height: 1.05;
     letter-spacing: -2px;
 }
@@ -96,146 +111,286 @@ body {
     font-size: 14px;
 }
 
-.trainer {
-    background: var(--surface);
+/* PANELS */
+
+.panel {
+    background: rgba(17,23,32,0.94);
     border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 30px;
+    border-radius: 16px;
+    padding: 26px;
+    margin-bottom: 18px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
 }
 
-.trainer-heading {
+.panel h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+}
+
+.section-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 28px;
 }
 
-.trainer-heading h2 {
-    font-size: 22px;
-}
+/* DECK SELECTOR */
 
-.mode-label {
-    color: var(--gold);
-    background: rgba(217,181,109,0.10);
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 10px;
-    letter-spacing: 1px;
-}
-
-.count-display {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.count-box {
-    background: var(--surface-light);
-    padding: 22px;
-    border-radius: 12px;
-}
-
-.count-box p {
+label {
+    display: block;
+    font-size: 12px;
     color: var(--muted);
-    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+select,
+input {
+    width: 100%;
+    background: var(--surface-light);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 14px;
+    outline: none;
+    font-size: 14px;
+}
+
+select:focus,
+input:focus {
+    border-color: var(--gold);
+}
+
+select option {
+    background: var(--surface);
+}
+
+/* STATS */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 18px 0;
+}
+
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 20px;
+}
+
+.stat-card p {
+    font-size: 9px;
+    color: var(--muted);
     letter-spacing: 1px;
     margin-bottom: 12px;
 }
 
-.count-box strong {
-    font-size: 36px;
+.stat-card strong {
+    font-size: 29px;
     color: var(--gold);
     font-weight: 500;
+    overflow-wrap: anywhere;
 }
 
-.card-area {
-    margin-top: 35px;
-}
+/* CARD COMPOSITION */
 
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    min-height: 115px;
-    align-items: center;
-}
-
-.playing-card {
-    width: 65px;
-    height: 95px;
-    border-radius: 8px;
-    background: #F7F7F3;
-    color: #151515;
+.composition-chart {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 9px;
-    font-size: 20px;
-    font-weight: bold;
-    animation: cardIn 0.25s ease;
+    gap: 16px;
 }
 
-.playing-card.red {
+.composition-row {
+    display: grid;
+    grid-template-columns: 38px 1fr 55px;
+    align-items: center;
+    gap: 13px;
+}
+
+.rank-label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.bar-track {
+    width: 100%;
+    height: 10px;
+    background: #27313D;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        #B58D49,
+        #E6CA8C
+    );
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+.card-quantity {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* CARD INPUT */
+
+.helper-text {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 10px 0 20px;
+}
+
+.card-buttons {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.card-btn {
+    background: #F4F3EF;
+    color: #151515;
+    border: 2px solid transparent;
+    border-radius: 9px;
+    min-height: 65px;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.card-btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+}
+
+.card-btn:active {
+    transform: scale(0.94);
+}
+
+.card-btn.red {
     color: #D43C43;
 }
 
-.card-bottom {
-    align-self: flex-end;
+.card-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
 }
 
-.empty-message {
-    color: var(--muted);
-    font-size: 13px;
+.divider {
+    height: 1px;
+    background: var(--border);
+    margin: 28px 0;
 }
 
-.controls {
-    display: flex;
-    gap: 12px;
-    margin-top: 20px;
-}
+/* BUTTONS */
 
-button {
-    padding: 14px 22px;
+.primary-btn,
+.secondary-btn,
+.small-btn {
     border-radius: 8px;
     font-weight: bold;
-    font-size: 12px;
     cursor: pointer;
     transition: 0.2s;
 }
 
 .primary-btn {
+    width: 100%;
+    margin-top: 14px;
+    padding: 15px;
     background: var(--gold);
     color: #111;
     border: none;
+    font-size: 13px;
 }
 
 .primary-btn:hover {
-    background: #E8C987;
+    background: var(--gold-light);
     transform: translateY(-2px);
 }
 
 .secondary-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px;
     background: transparent;
-    color: var(--text);
     border: 1px solid var(--border);
+    color: var(--text);
 }
 
-.secondary-btn:hover {
+.secondary-btn:hover,
+.small-btn:hover {
     background: var(--surface-light);
 }
 
-.deck-info {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 12px;
+.small-btn {
+    padding: 9px 13px;
+    background: var(--surface-light);
+    color: var(--gold);
+    border: 1px solid var(--border);
+    font-size: 11px;
 }
 
-.deck-info strong {
-    color: var(--text);
+/* MESSAGES */
+
+.message {
+    min-height: 18px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--green);
 }
+
+.message.error {
+    color: var(--red);
+}
+
+/* COUNT INFORMATION */
+
+.count-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.count-info strong {
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+}
+
+/* HISTORY */
+
+.history {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    min-height: 35px;
+    margin: 18px 0;
+}
+
+.history-card {
+    background: var(--surface-light);
+    color: var(--gold-light);
+    border: 1px solid var(--border);
+    padding: 9px 12px;
+    border-radius: 7px;
+    font-size: 12px;
+    animation: appear 0.25s ease;
+}
+
+/* FOOTER */
 
 footer {
     text-align: center;
@@ -245,43 +400,67 @@ footer {
     padding: 30px 0;
 }
 
-@keyframes cardIn {
+/* ANIMATIONS */
+
+@keyframes appear {
     from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(8px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-@media (max-width: 600px) {
+/* MOBILE */
+
+@media (max-width: 700px) {
+
     .app {
-        padding: 20px 15px;
+        padding: 20px 14px;
     }
 
     .hero {
         padding: 45px 0 30px;
     }
 
-    .trainer {
-        padding: 20px 15px;
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 
-    .count-box {
+    .stat-card {
         padding: 16px;
     }
 
-    .count-box strong {
-        font-size: 29px;
+    .stat-card strong {
+        font-size: 25px;
     }
 
-    .controls {
-        flex-direction: column;
+    .panel {
+        padding: 20px 15px;
     }
 
-    button {
-        width: 100%;
+    .card-buttons {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .composition-row {
+        grid-template-columns: 28px 1fr 40px;
+        gap: 9px;
+    }
+
+    .header {
+        gap: 10px;
+    }
+
+    .brand {
+        font-size: 10px;
+    }
+
+    .status {
+        font-size: 8px;
     }
 }
